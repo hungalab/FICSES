@@ -4,7 +4,7 @@
 #define FIC00_ID 	0x0
 #define FIC01_ID 	0x1
 #define BRODCAST 	0xBB
-#define SES_PKT0_3  0xfff7
+#define SES_SLOT  	0x2000
 #define DATA_SIZE	32
 
 int main(int argc, char *argv[]) {
@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
 
 	user_write_data (wb, FIC00_ID, DATA_SIZE, FICSESL0_CH2);
 
-	ficses_register_read(FIC00_ID, SES_PKT0_3, FICSESL0_CH1);	
+	ficses_register_read(FIC00_ID, SES_SLOT, FICSESL0_CH1);	
 	
 	return 0;
 }
