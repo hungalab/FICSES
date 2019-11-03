@@ -676,11 +676,15 @@ int ddr_write_data(int *array, int BOARD_ID, int data_count, int ficses_channel)
 return 0;		
 }
 
-// User function: read PACKETMAXx32bit from DDR data via FICSES
-int ddr_read_data(int *array, int BOARD_ID, int data_count, int ficses_channel) {	
+// User function: read data_countx32bit from DDR data via FICSES
+int ddr_read_data(int BOARD_ID, int address, unsigned long payload, int *array) {	
+	
+	ficses_start(RD_START_FICSESL0_CH2);
 
 	int *read_data;
 	read_data = (int *)malloc(sizeof(int)*PACKETMAX*4);	
+	
+	ficses_register_write(BOARD_ID, address, payload, FICSESL0_CH1);
 	
 	ficses_read_128KB(READ_BINARY_FILE, FICSESL0_CH2, read_data, 1);	
 	
